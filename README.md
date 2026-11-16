@@ -2,7 +2,7 @@
 
 An Arduino-based irrigation controller: a relay switches the water pump/valve on and off, commanded wirelessly over **Bluetooth (HC-05)**. The project is being built incrementally, one tested version at a time.
 
-It reuses the architecture of an earlier project I developed at university — a classroom automation controller (projectors and air conditioning over IR, Bluetooth commands, RTC scheduling and watchdog) — which is kept in this repository as a reference.
+It builds on an earlier project I developed at university, a classroom automation controller (projectors and air conditioning over IR, Bluetooth commands, RTC scheduling and watchdog), now in its own repository: [Classroom-Controller](https://github.com/guigaf/Classroom-Controller).
 
 ## Status
 
@@ -31,16 +31,10 @@ Wiring diagrams are in [`Placa/`](Placa/) (Fritzing `.fzz` files and PNG/PDF exp
 
 ```
 Arduino/Codigos/
-├── V1.0 - Comunicaçao Bluetooth/    # irrigation controller – Bluetooth link
-├── V1.1 - Comando por Rele/         # irrigation controller – relay control
-├── Exemplos ControleSala/           # reference: classroom controller (V1.3 → V1.13)
-└── outros/                          # reference: component tests (IR, RTC, watchdog, HC-05 AT commands)
+├── V1.0 - Comunicaçao Bluetooth/    # Bluetooth link
+└── V1.1 - Comando por Rele/         # relay control
 Placa/                               # schematics and wiring images
 ```
-
-### Reference: classroom automation controller
-
-`Exemplos ControleSala/` contains the full evolution of the earlier university project — from a first Bluetooth + IR test to a version with RTC-scheduled shutdown at 22:00, interrupt-based timing and a hardware watchdog. Each folder name records what changed in that version (e.g. `V1.12 (V1.11 + WATCHDOG)`). The scheduling, Bluetooth protocol and watchdog patterns from it are the starting point for the next irrigation versions.
 
 ## Getting started
 
@@ -48,7 +42,7 @@ Placa/                               # schematics and wiring images
 2. Open `Arduino/Codigos/V1.1 - Comando por Rele/Comando_Por_Rele/Comando_Por_Rele.ino` and upload it.
 3. Open the Serial Monitor at 9600 baud and send `a` (relay on) or `b` (relay off).
 
-The reference sketches in `Exemplos ControleSala/` also need these libraries, installed via **Library Manager**: [IRremote](https://github.com/Arduino-IRremote/Arduino-IRremote) (2.x API), [virtuabotixRTC](https://github.com/chrisfryer78/ArduinoRTClibrary) and [TimerOne](https://github.com/PaulStoffregen/TimerOne).
+No external libraries are needed (`SoftwareSerial` ships with the Arduino IDE).
 
 ## Tech
 
