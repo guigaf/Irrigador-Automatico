@@ -1,0 +1,8 @@
+# Archives and third-party libraries (install them via Arduino Library Manager)
+*.zip
+*.rar
+libraries/
+# OS / editor
+.DS_Store
+Thumbs.db
+*.sublime-workspace
