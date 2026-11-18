@@ -32,6 +32,6 @@ void loop(){
     delay(200);
   }
  
-  a1 = ""; //Limpa a variavel
+  a1 = 0; //Limpa a variavel
  
 }
