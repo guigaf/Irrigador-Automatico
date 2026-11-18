@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 820" width="1400" height="820" font-family="DejaVu Sans, Arial, sans-serif">
+  <defs>
+    <g id="gnd">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#222" stroke-width="3"/>
+      <line x1="-14" y1="12" x2="14" y2="12" stroke="#222" stroke-width="3"/>
+      <line x1="-9" y1="18" x2="9" y2="18" stroke="#222" stroke-width="3"/>
+      <line x1="-4" y1="24" x2="4" y2="24" stroke="#222" stroke-width="3"/>
+    </g>
+  </defs>
+  <rect width="1400" height="820" fill="#ffffff"/>
+
+  <text x="40" y="52" font-size="28" font-weight="bold" fill="#1a1a1a">Irrigador Automático V1.2 — diagrama de ligação</text>
+  <text x="40" y="82" font-size="16" fill="#555">Arduino Uno · HC-05 (Bluetooth) · relé 12V acionado por BC337 · válvula solenoide na rede</text>
+
+  <!-- ===== Arduino ===== -->
+  <rect x="60" y="130" width="300" height="520" rx="14" fill="#1f6f8b" stroke="#134b5f" stroke-width="3"/>
+  <text x="175" y="390" font-size="30" font-weight="bold" fill="#fff" text-anchor="middle">Arduino</text>
+  <text x="175" y="424" font-size="22" fill="#d9f1f8" text-anchor="middle">Uno</text>
+  <g font-size="17" fill="#fff" text-anchor="end" font-weight="bold">
+    <text x="345" y="226">5V</text>
+    <text x="345" y="296">GND</text>
+    <text x="345" y="386">D6 (TX)</text>
+    <text x="345" y="446">D5 (RX)</text>
+    <text x="345" y="566">D2</text>
+  </g>
+  <g fill="#ffd34d" stroke="#8a6d00" stroke-width="1.5">
+    <circle cx="360" cy="220" r="6"/><circle cx="360" cy="290" r="6"/><circle cx="360" cy="380" r="6"/>
+    <circle cx="360" cy="440" r="6"/><circle cx="360" cy="560" r="6"/>
+  </g>
+
+  <!-- ===== HC-05 ===== -->
+  <rect x="760" y="120" width="230" height="200" rx="10" fill="#2f8f4e" stroke="#1d5e33" stroke-width="3"/>
+  <text x="900" y="200" font-size="26" font-weight="bold" fill="#fff" text-anchor="middle">HC-05</text>
+  <text x="900" y="228" font-size="16" fill="#e2f5e8" text-anchor="middle">Bluetooth</text>
+  <g font-size="16" fill="#fff" font-weight="bold">
+    <text x="772" y="156">VCC</text><text x="772" y="196">GND</text>
+    <text x="772" y="246">RXD</text><text x="772" y="296">TXD</text>
+  </g>
+  <g fill="#ffd34d" stroke="#8a6d00" stroke-width="1.5">
+    <circle cx="760" cy="150" r="6"/><circle cx="760" cy="190" r="6"/><circle cx="760" cy="240" r="6"/><circle cx="760" cy="290" r="6"/>
+  </g>
+
+  <!-- 5V -> VCC -->
+  <polyline points="366,220 460,220 460,150 754,150" fill="none" stroke="#d62828" stroke-width="4"/>
+  <!-- GND Arduino -->
+  <polyline points="366,290 410,290 410,300" fill="none" stroke="#222" stroke-width="4"/>
+  <use href="#gnd" x="410" y="300"/>
+  <!-- GND HC-05 -->
+  <polyline points="754,190 730,190 730,198" fill="none" stroke="#222" stroke-width="4"/>
+  <use href="#gnd" x="730" y="198"/>
+
+  <!-- D6 -> R1 -> node -> RXD ; node -> R2 -> GND -->
+  <polyline points="366,380 430,380" fill="none" stroke="#f77f00" stroke-width="4"/>
+  <rect x="430" y="368" width="90" height="24" rx="4" fill="#f4e1c1" stroke="#7a5a2b" stroke-width="2"/>
+  <text x="475" y="361" font-size="15" text-anchor="middle" fill="#333">R1 1 kΩ</text>
+  <polyline points="520,380 600,380 600,240 754,240" fill="none" stroke="#f77f00" stroke-width="4"/>
+  <circle cx="600" cy="380" r="7" fill="#f77f00"/>
+  <polyline points="600,380 600,395" fill="none" stroke="#222" stroke-width="4"/>
+  <rect x="588" y="395" width="24" height="70" rx="4" fill="#f4e1c1" stroke="#7a5a2b" stroke-width="2"/>
+  <text x="622" y="436" font-size="15" fill="#333">R2 2 kΩ</text>
+  <polyline points="600,465 600,475" fill="none" stroke="#222" stroke-width="4"/>
+  <use href="#gnd" x="600" y="475"/>
+  <text x="440" y="342" font-size="13" fill="#7a4a00">divisor 5V → 3,3V</text>
+
+  <!-- HC TXD -> D5 -->
+  <polyline points="754,290 700,290 700,520 400,520 400,440 366,440" fill="none" stroke="#2a9d8f" stroke-width="4"/>
+
+  <!-- D2 -> R3 -> base -->
+  <polyline points="366,560 470,560" fill="none" stroke="#7b2cbf" stroke-width="4"/>
+  <rect x="470" y="548" width="90" height="24" rx="4" fill="#f4e1c1" stroke="#7a5a2b" stroke-width="2"/>
+  <text x="515" y="541" font-size="15" text-anchor="middle" fill="#333">R3 1 kΩ</text>
+  <polyline points="560,560 800,560" fill="none" stroke="#7b2cbf" stroke-width="4"/>
+
+  <!-- BC337 NPN -->
+  <circle cx="830" cy="560" r="42" fill="#f2f2f2" stroke="#222" stroke-width="3"/>
+  <line x1="812" y1="530" x2="812" y2="590" stroke="#222" stroke-width="5"/>
+  <line x1="800" y1="560" x2="812" y2="560" stroke="#222" stroke-width="4"/>
+  <line x1="812" y1="545" x2="850" y2="518" stroke="#222" stroke-width="3"/>
+  <line x1="812" y1="575" x2="850" y2="602" stroke="#222" stroke-width="3"/>
+  <polygon points="850,602 836,598 843,588" fill="#222"/>
+  <text x="884" y="556" font-size="17" font-weight="bold" fill="#222">Q1</text>
+  <text x="884" y="576" font-size="15" fill="#333">BC337 (NPN)</text>
+  <text x="790" y="548" font-size="12" fill="#555" text-anchor="end">B</text>
+  <text x="858" y="512" font-size="12" fill="#555">C</text>
+  <text x="858" y="618" font-size="12" fill="#555">E</text>
+  <polyline points="850,602 850,640" fill="none" stroke="#222" stroke-width="4"/>
+  <use href="#gnd" x="850" y="640"/>
+  <text x="866" y="652" font-size="13" fill="#555">GND comum</text><text x="866" y="669" font-size="13" fill="#555">(Arduino + fonte 12V)</text>
+
+  <!-- Relay coil -->
+  <polyline points="850,518 850,480" fill="none" stroke="#222" stroke-width="4"/>
+  <rect x="828" y="400" width="44" height="80" rx="4" fill="#fff" stroke="#222" stroke-width="3"/>
+  <line x1="828" y1="480" x2="872" y2="400" stroke="#222" stroke-width="2"/>
+  <text x="808" y="436" font-size="15" fill="#222" text-anchor="end" font-weight="bold">Bobina</text>
+  <text x="808" y="456" font-size="13" fill="#555" text-anchor="end">relé 12V</text>
+  <polyline points="850,400 850,370" fill="none" stroke="#d62828" stroke-width="4"/>
+  <circle cx="850" cy="370" r="6" fill="#d62828"/>
+  <text x="850" y="358" font-size="16" font-weight="bold" fill="#d62828" text-anchor="middle">+12V (fonte)</text>
+
+  <!-- Flyback diode -->
+  <polyline points="850,385 950,385 950,410" fill="none" stroke="#222" stroke-width="3"/>
+  <polyline points="850,495 950,495 950,470" fill="none" stroke="#222" stroke-width="3"/>
+  <polygon points="936,470 964,470 950,442" fill="#222"/>
+  <line x1="934" y1="440" x2="966" y2="440" stroke="#222" stroke-width="4"/>
+  <line x1="950" y1="440" x2="950" y2="410" stroke="#222" stroke-width="3"/>
+  <text x="966" y="436" font-size="15" fill="#222" font-weight="bold">D1 1N4007</text>
+  <text x="966" y="454" font-size="13" fill="#555">proteção</text>
+
+  <!-- Mechanical link to contacts -->
+  
+
+  <!-- Relay contacts / mains side -->
+  <rect x="1075" y="360" width="295" height="400" rx="12" fill="#fff4f4" stroke="#c1121f" stroke-width="2" stroke-dasharray="10 6"/>
+  <text x="1222" y="388" font-size="16" font-weight="bold" fill="#c1121f" text-anchor="middle">⚠ REDE ELÉTRICA 127/220V</text>
+  <circle cx="1110" cy="470" r="6" fill="#222"/><text x="1100" y="500" font-size="14" text-anchor="end" fill="#222">COM</text>
+  <circle cx="1170" cy="440" r="6" fill="#222"/><text x="1182" y="436" font-size="14" fill="#222">NO</text>
+  <line x1="1110" y1="470" x2="1162" y2="446" stroke="#222" stroke-width="4"/>
+  <text x="1180" y="500" font-size="13" fill="#555">contato</text>
+
+  <rect x="1200" y="560" width="140" height="80" rx="8" fill="#e0ecff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="1270" y="592" font-size="15" font-weight="bold" fill="#1d3a8a" text-anchor="middle">Válvula</text>
+  <text x="1270" y="612" font-size="15" font-weight="bold" fill="#1d3a8a" text-anchor="middle">solenoide</text>
+  <text x="1270" y="630" font-size="13" fill="#1d3a8a" text-anchor="middle">127/220V</text>
+
+  <rect x="1080" y="680" width="120" height="60" rx="8" fill="#fde2e2" stroke="#c1121f" stroke-width="2"/>
+  <text x="1140" y="706" font-size="14" font-weight="bold" fill="#8b0000" text-anchor="middle">Tomada</text>
+  <text x="1140" y="724" font-size="13" fill="#8b0000" text-anchor="middle">Fase / Neutro</text>
+
+  <polyline points="1176,440 1270,440 1270,560" fill="none" stroke="#c1121f" stroke-width="4"/>
+  <polyline points="1110,476 1110,680" fill="none" stroke="#c1121f" stroke-width="4"/>
+  <text x="1118" y="590" font-size="13" fill="#8b0000">Fase</text>
+  <polyline points="1200,710 1300,710 1300,640" fill="none" stroke="#1d4ed8" stroke-width="4"/>
+  <text x="1308" y="680" font-size="13" fill="#1d3a8a">Neutro</text>
+
+  <polyline points="872,412 1136,412 1136,456" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <!-- Notes -->
+  <rect x="40" y="680" width="960" height="120" rx="10" fill="#fff8e1" stroke="#e0a800" stroke-width="2"/>
+  <text x="60" y="710" font-size="16" font-weight="bold" fill="#7a5a00">Notas</text>
+  <text x="60" y="736" font-size="14" fill="#333">• Comandos via Bluetooth ou USB: a = liga, b = desliga, s = estado. O relé sempre inicia desligado.</text>
+  <text x="60" y="760" font-size="14" fill="#333">• R1/R2 baixam o sinal de 5V do Arduino para ~3,3V no RXD do HC-05. D1 protege o BC337 do pico da bobina.</text>
+  <text x="60" y="784" font-size="14" fill="#333">• Hardware a confirmar na montagem real: relé 12V com BC337 e válvula 127/220V.</text>
+</svg>
